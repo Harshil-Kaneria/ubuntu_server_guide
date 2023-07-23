@@ -1,128 +1,86 @@
 import { useState, useRef } from "react";
-import {
-  UniqueCharOTP,
-  UniqueNumber,
-  UniqueNumberId,
-  UniqueOTP,
-  UniqueString,
-  UniqueStringId,
-  HEXColor,
-  uuid,
-} from "unique-string-generator";
-import { CopyBlock,vs2015 } from "react-code-blocks";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { CopyBlock, vs2015 } from "react-code-blocks";
 import { toast, Flip } from "react-toastify";
-import { useEffect } from "react";
 
 // Make Function
 const Home = () => {
   const toastId = useRef(null);
-  
-  const [mainData, setMainData] = useState([])
-  const updateValue = () => {
-    setMainData([
-      ["UniqueString()", UniqueString()],
-      ["UniqueNumber()", UniqueNumber()],
-      ["UniqueStringId()", UniqueStringId()],
-      ["UniqueNumberId()", UniqueNumberId()],
-      ["UniqueOTP()", UniqueOTP()],
-      ["UniqueOTP(4)", UniqueOTP(4)],
-      ["UniqueCharOTP()", UniqueCharOTP()],
-      ["UniqueCharOTP(4)", UniqueCharOTP(4)],
-      ["HEXColor()", HEXColor()],
-      ["HEXColor(true)", HEXColor(true)],
-      ["uuid.v4()", uuid.v4()],
-      ["uuid.validate(uuid.v4())", uuid.validate(uuid.v4())],
-    ]);
-  };
-
-  useEffect(() => {
-    updateValue();
-  }, []);
+  const [mainData, setMainData] = useState([
+    ["ssh ubuntu_server@192.168.0.1", ""],
+    ["ssh -i mykey.pem user@mydomain.example", ""],
+    ["ssh-copy-id ubuntu_server@192.168.0.1", ""],
+    ["htop", ""],
+    ["sudo apt update", ""],
+    ["sudo apt upgrade", ""],
+    ["sudo apt install net-tools", ""],
+    ["sudo apt install mysql-server", ""],
+    ["sudo apt install apache2", ""],
+    ["sudo systemctl status mysql", ""],
+    ["sudo systemctl status apache2", ""],
+    ["sudo apt install php -y", ""],
+    ["sudo apt install phpmyadmin -y", ""],
+    ["sudo phpenmod mbstring", ""],
+    ["sudo systemctl restart apache2", ""],
+    ["sudo mysql -u root -p", ""],
+    ["sudo apt install nginx", ""],
+    ["sudo ufw app list", ""],
+    ["sudo ufw allow 'Nginx FULL'", ""],
+    ["sudo ufw allow 'OpenSSH'", ""],
+    ["sudo ufw enable", ""],
+    ["sudo ufw status", ""],
+    ["systemctl status nginx", ""],
+    ["cd /var/www/html", ""],
+    ["sudo mkdir frontend", ""],
+    ["sudo chmod 777 frontend", ""],
+    ["sudo mkdir backend", ""],
+    ["sudo chmod 777 backend", ""],
+    ["ssh-keygen", ""],
+    ["cat ~/.ssh/id_rsa.pub", ""],
+    ["git clone git@github.com:Harshil-Kaneria/xyz.git", ""],
+    ["git config --global --add safe.directory '*'", ""],
+    ["git init", ""],
+    ["git remote add origin git@github.com:Harshil-Kaneria/xyz.git", ""],
+    ["git checkout main", ""],
+    ["cp .env.local .env", ""],
+    ["sudo apt install curl", ""],
+    [
+      "curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash ",
+      "",
+    ],
+    ["source ~/.bashrc", ""],
+    ["nvm install 19.8.1", ""],
+    ["nvm ls", ""],
+    ["nvm use 12.22.7", ""],
+    ["node -v", ""],
+    ["npm -v", ""],
+    ["npm install pm2 -g", ""],
+    ["pm2 start", ""],
+    ["pm2 list", ""],
+    ["pm2 logs", ""],
+    ["pm2 logs --lines 250", ""],
+    ["pm2 save", ""],
+    ["pm2 resurrect", ""],
+    ["npm install -g serve", ""],
+    ["pm2 serve build 3000--spa", ""],
+    ["pm2 start server.js", ""],
+  ]);
 
   return (
     <>
       <div className="container">
         <div className="row mt-3 d-flex align-item-center">
-          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-left">
-              <CountdownCircleTimer
-                size={50}
-                strokeWidth={5}
-                isPlaying
-                duration={10}
-                colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
-                colorsTime={[7, 5, 2, 0]}
-                onComplete={() => {
-                  updateValue();
-                  return { shouldRepeat: true };
-                }}
-              >
-                {({ remainingTime }) => remainingTime}
-              </CountdownCircleTimer>
-          </div>
-          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 d-flex align-items-center justify-content-center">
-            <h3 className="text-secondary text-center">
-              Unique-String-Generator
-            </h3>
-          </div>
-          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 d-flex justify-content-end align-items-center">
-            <button
-              className="btn btn-sm btn-outline-success"
-              onClick={() => {
-                updateValue();
-              }}
-            >
-              Refresh Values
-            </button>
-          </div>
+          <h3 className="text-secondary text-center">Ubuntu server guide</h3>
         </div>
         <hr />
-        <div className="row">
-          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-            <p className="font-weight-bold text-secondary">Step :- 1</p>
-            <CopyBlock
-              codeBlock={true}
-              text={`npm install unique-string-generator`}
-              language="bash"
-              showLineNumbers={false}
-              theme={vs2015}
-              onCopy={() => {
-                toast.dismiss();
-                toastId.current = toast("Code copied !", { transition: Flip });
-              }}
-            />
-          </div>
-          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-            <p className="font-weight-bold text-secondary">Step :- 2</p>
-            <CopyBlock
-              codeBlock={false}
-              text={`import { UniqueString,UniqueNumber,UniqueStringId,UniqueNumberId,UniqueOTP,UniqueCharOTP,HEXColor,uuid } from 'unique-string-generator';`}
-              language="javascript"
-              showLineNumbers={false}
-              theme={vs2015}
-              onCopy={() => {
-                toast.dismiss();
-                toastId.current = toast("Code copied !", { transition: Flip });
-              }}
-              style={{ wordWrap: "break-word" }}
-            />
-          </div>
-          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-            <p className="font-weight-bold text-secondary">OR</p>
-            <CopyBlock
-              codeBlock={false}
-              text={`const { UniqueString,UniqueNumber,UniqueStringId,UniqueNumberId,UniqueOTP,UniqueCharOTP,HEXColor,uuid } = require('unique-string-generator')`}
-              language="javascript"
-              showLineNumbers={false}
-              theme={vs2015}
-              onCopy={() => {
-                toast.dismiss();
-                toastId.current = toast("Code copied !", { transition: Flip });
-              }}
-            />
-          </div>
-        </div>
-        <hr />
+
+        <figure>
+          <h5>
+          <figcaption className="blockquote-footer">
+            Commands
+          </figcaption>
+          </h5>
+        </figure>
+
         <div className="row">
           {mainData.map((item, i) => {
             return (
@@ -133,7 +91,7 @@ const Home = () => {
                 <CopyBlock
                   codeBlock={true}
                   text={`${item[0]}`}
-                  language="javascript"
+                  language="bash"
                   showLineNumbers={false}
                   theme={vs2015}
                   onCopy={() => {
@@ -143,7 +101,7 @@ const Home = () => {
                     });
                   }}
                 />
-                <span>{`${item[1]}`}</span>
+                <span>{`${item[1] == "" ? "" : item[1]}`}</span>
               </div>
             );
           })}
