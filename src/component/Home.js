@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { CopyBlock, vs2015 } from "react-code-blocks";
+import { CopyBlock, vs2015,dracula } from "react-code-blocks";
 import { toast, Flip } from "react-toastify";
 
 // Make Function
@@ -69,6 +69,8 @@ const Home = () => {
     {
       "title":"NVM and Nodejs",
       "mainData":[
+        ["sudo apt install nodejs", ""],
+        ["sudo apt install npm", ""],
         ["sudo apt install curl", ""],
         [
           "curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash ",
@@ -110,6 +112,8 @@ const Home = () => {
         ["npm install -g serve", ""],
         ["pm2 serve build 3000--spa", ""],
         ["pm2 start server.js", ""],
+        ["pm2 start server.js -i max", ""],
+        ["pm2 start server.js -i 4", ""],
       ]
     }
   ])
@@ -118,15 +122,21 @@ const Home = () => {
     <>
       <div className="container">
         <div className="row mt-3 d-flex align-item-center">
-          <h3 className="text-secondary text-center">Ubuntu server guide</h3>
+          <h3 className="text-secondary text-center shadow p-3 rounded">Ubuntu server guide</h3>
+          <p className="text-end"></p>
+          <blockquote class="blockquote text-end">
+            <p class="mb-3 text-secondary">Better then thousand of words</p>
+            <footer class="blockquote-footer">Harshil Kaneria</footer>
+          </blockquote>
+
         </div>
-        <hr />
         {commandData.map((data,i)=>{
           return (<>
-            <div className="text-center">
-              <kbd>{data.title}</kbd>
-            </div>
             <hr/>
+            <div className="text-center mb-3">
+              <kbd >{data.title}</kbd>
+            </div>
+            {/* <hr/> */}
             <div className="row">
               {data.mainData.map((item, i) => {
             return (
@@ -139,10 +149,11 @@ const Home = () => {
                   text={`${item[0]}`}
                   language="bash"
                   showLineNumbers={false}
-                  theme={vs2015}
+                  wrapLongLines={true}
+                  theme={dracula}
                   onCopy={() => {
                     toast.dismiss();
-                    toastId.current = toast("Code copied !", {
+                    toastId.current = toast("Command copied !", {
                       transition: Flip,
                     });
                   }}
