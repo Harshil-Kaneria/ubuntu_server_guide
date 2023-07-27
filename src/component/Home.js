@@ -62,7 +62,9 @@ const Home = () => {
         ["git config --global --add safe.directory '*'", ""],
         ["git init", ""],
         ["git remote add origin git@github.com:Harshil-Kaneria/xyz.git", ""],
+        ["git remote add -t \* -f origin git@github.com:Harshil-Kaneria/xyz.git", ""],
         ["git checkout main", ""],
+        ["git checkout -f main", ""],
         ["cp .env.local .env", ""],
       ]
     },
