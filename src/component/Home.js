@@ -1,10 +1,57 @@
+import { useEffect } from "react";
 import { useState, useRef } from "react";
-import { CopyBlock, vs2015,dracula } from "react-code-blocks";
+import { CopyBlock,
+  a11yDark,
+  a11yLight,
+  anOldHope,
+  androidstudio,
+  arta,
+  atomOneDark,
+  atomOneLight,
+  codepen,
+  dracula,
+  far,
+  github,
+  googlecode,
+  hopscotch,
+  hybrid,
+  irBlack,
+  monoBlue,
+  monokaiSublime,
+  monokai,
+  nord,
+  obsidian,
+  ocean,
+  paraisoDark,
+  paraisoLight,
+  pojoaque,
+  purebasic,
+  railscast,
+  rainbow,
+  shadesOfPurple,
+  solarizedDark,
+  solarizedLight,
+  sunburst,
+  tomorrowNightBlue,
+  tomorrowNightBright,
+  tomorrowNightEighties,
+  tomorrowNight,
+  tomorrow,
+  vs2015,
+  xt256,
+  zenburn } from "react-code-blocks";
 import { toast, Flip } from "react-toastify";
 
 // Make Function
 const Home = () => {
   const toastId = useRef(null);
+  const [currentTheme,setCurrentTheme] = useState(dracula)
+  const [currentThemeMode,setCurrentThemeMode] = useState('light')
+  
+  useEffect(()=>{
+    console.log("🚀 ~ file: Home.js:50 ~ Home ~ currentThemeMode:", currentThemeMode)
+  },[currentThemeMode])
+
   const [commandData,setCommandData] = useState([
     {
       "title":"SSH",
@@ -144,19 +191,82 @@ const Home = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="row mt-3 d-flex align-item-center">
+      <div className={currentThemeMode=='light'?"container-fluid":"container-fluid bg-dark"}>
+        <div className="row d-flex align-item-center">
           <h3 className="text-secondary text-center shadow p-3 rounded">Ubuntu server guide</h3>
-          <blockquote class="blockquote text-end">
-            <p class="mb-3 text-secondary">Simplicity meets power: Ubuntu server setup, mastered with ease.</p>
-            <footer class="blockquote-footer">Harshil Kaneria</footer>
+          <blockquote className="blockquote text-end">
+            <p className="mb-3 text-secondary">Simplicity meets power: Ubuntu server setup, mastered with ease.</p>
+            <footer className="blockquote-footer">Harshil Kaneria</footer>
           </blockquote>
         </div>
+
+        <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mb-4"/>
+        <div className="row">
+          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-4 mb-xl-0 mb-lg-0 mb-md-0">
+            <div class="form-floating">
+              <select id="floatingCodeThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e => {
+                setCurrentTheme(JSON.parse(e.target.value));
+              }}>
+                <option value={JSON.stringify(a11yDark)}>A11y Dark</option>
+                <option value={JSON.stringify(a11yLight)}>A11y Light</option>
+                <option value={JSON.stringify(anOldHope)}>An Old Hope</option>
+                <option value={JSON.stringify(androidstudio)}>Androidstudio</option>
+                <option value={JSON.stringify(arta)}>Arta</option>
+                <option value={JSON.stringify(atomOneDark)}>Atom One Dark</option>
+                <option value={JSON.stringify(atomOneLight)}>Atom One Light</option>
+                <option value={JSON.stringify(codepen)}>Codepen</option>
+                <option selected value={JSON.stringify(dracula)}>Dracula</option>
+                <option value={JSON.stringify(far)}>Far</option>
+                <option value={JSON.stringify(github)}>Github</option>
+                <option value={JSON.stringify(googlecode)}>Googlecode</option>
+                <option value={JSON.stringify(hopscotch)}>Hopscotch</option>
+                <option value={JSON.stringify(hybrid)}>Hybrid</option>
+                <option value={JSON.stringify(irBlack)}>Ir Black</option>
+                <option value={JSON.stringify(monoBlue)}>Mono Blue</option>
+                <option value={JSON.stringify(monokaiSublime)}>Monokai Sublime</option>
+                <option value={JSON.stringify(monokai)}>Monokai</option>
+                <option value={JSON.stringify(nord)}>Nord</option>
+                <option value={JSON.stringify(obsidian)}>Obsidian</option>
+                <option value={JSON.stringify(ocean)}>Ocean</option>
+                <option value={JSON.stringify(paraisoDark)}>Paraiso Dark</option>
+                <option value={JSON.stringify(paraisoLight)}>Paraiso Light</option>
+                <option value={JSON.stringify(pojoaque)}>Pojoaque</option>
+                <option value={JSON.stringify(purebasic)}>Purebasic</option>
+                <option value={JSON.stringify(railscast)}>Railscast</option>
+                <option value={JSON.stringify(rainbow)}>Rainbow</option>
+                <option value={JSON.stringify(shadesOfPurple)}>Shades Of Purple</option>
+                <option value={JSON.stringify(solarizedDark)}>Solarized Dark</option>
+                <option value={JSON.stringify(solarizedLight)}>Solarized Light</option>
+                <option value={JSON.stringify(sunburst)}>Sunburst</option>
+                <option value={JSON.stringify(tomorrowNightBlue)}>Tomorrow Night Blue</option>
+                <option value={JSON.stringify(tomorrowNightBright)}>Tomorrow Night Bright</option>
+                <option value={JSON.stringify(tomorrowNightEighties)}>Tomorrow Night Eighties</option>
+                <option value={JSON.stringify(tomorrowNight)}>Tomorrow Night</option>
+                <option value={JSON.stringify(tomorrow)}>Tomorrow</option>
+                <option value={JSON.stringify(vs2015)}>Vs2015</option>
+                <option value={JSON.stringify(xt256)}>Xt256</option>
+                <option value={JSON.stringify(zenburn)}>Zenburn</option>
+              </select>
+              <label for="floatingCodeThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a code theme:</label>
+            </div>
+          </div>
+          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          <div class="form-floating">
+            <select id="floatingWebThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e=>{setCurrentThemeMode(e.target.value)}}>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+            <label for="floatingWebThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a webpage theme:</label>
+            </div>
+          </div>
+        </div>
+
+
         {commandData.map((data,i)=>{
           return (<>
-            <hr style={{border:'1px dashed black'}} className="mt-4"/>
+            <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mt-4"/>
             <div className="text-center mb-3">
-              <kbd>{data.title}</kbd>
+              <kbd className={currentThemeMode=='light'?"":"bg-white text-dark"}>{data.title}</kbd>
             </div>
             {/* <hr/> */}
             <div className="row shadow p-3 mb-0 pb-0 rounded">
@@ -172,11 +282,12 @@ const Home = () => {
                   language="bash"
                   showLineNumbers={false}
                   wrapLongLines={true}
-                  theme={dracula}
+                  theme={currentTheme}
                   onCopy={() => {
                     toast.dismiss();
                     toastId.current = toast("Command copied !", {
                       transition: Flip,
+                      theme:currentThemeMode,
                     });
                   }}
                 />
@@ -188,10 +299,10 @@ const Home = () => {
           </>)
         })}
 
-        <blockquote class="blockquote text-center mt-5">
+        <blockquote className="blockquote text-center mt-5 mb-0">
             <hr style={{border:'1px dashed black'}}/>
-            <p class="text-secondary mb-0">Wrapping up today's endeavors on a high note!</p>
-            <p class="text-secondary">Have a suggestion? Reach out to me at: <a href="mailto:harshilkaneria00@gmail.com">harshilkaneria00@gmail.com</a></p>
+            <p className="text-secondary mb-0">Wrapping up today's endeavors on a high note!</p>
+            <p className="text-secondary">Have a suggestion? Reach out to me at: <a href="mailto:harshilkaneria00@gmail.com">harshilkaneria00@gmail.com</a></p>
         </blockquote>
 
       </div>
