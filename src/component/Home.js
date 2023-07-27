@@ -154,12 +154,12 @@ const Home = () => {
         </div>
         {commandData.map((data,i)=>{
           return (<>
-            <hr/>
+            <hr style={{border:'1px dashed black'}} className="mt-4"/>
             <div className="text-center mb-3">
-              <kbd >{data.title}</kbd>
+              <kbd>{data.title}</kbd>
             </div>
             {/* <hr/> */}
-            <div className="row">
+            <div className="row shadow p-3 mb-0 pb-0 rounded">
               {data.mainData.map((item, i) => {
             return (
               <div
@@ -187,6 +187,13 @@ const Home = () => {
             </div>
           </>)
         })}
+
+        <blockquote class="blockquote text-center mt-5">
+            <hr style={{border:'1px dashed black'}}/>
+            <p class="text-secondary mb-0">Wrapping up today's endeavors on a high note!</p>
+            <p class="text-secondary">Have a suggestion? Reach out to me at: <a href="mailto:harshilkaneria00@gmail.com">harshilkaneria00@gmail.com</a></p>
+        </blockquote>
+
       </div>
     </>
   );
