@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useState, useRef } from "react";
 import { CopyBlock,
   a11yDark,
@@ -47,10 +46,6 @@ const Home = () => {
   const toastId = useRef(null);
   const [currentTheme,setCurrentTheme] = useState(dracula)
   const [currentThemeMode,setCurrentThemeMode] = useState('light')
-  
-  useEffect(()=>{
-    console.log("🚀 ~ file: Home.js:50 ~ Home ~ currentThemeMode:", currentThemeMode)
-  },[currentThemeMode])
 
   const [commandData,setCommandData] = useState([
     {
@@ -190,7 +185,7 @@ const Home = () => {
   ])
 
   return (
-    <>
+    <div>
       <div className={currentThemeMode=='light'?"container-fluid":"container-fluid bg-dark"}>
         <div className="row d-flex align-item-center">
           <h3 className="text-secondary text-center shadow p-3 rounded">Ubuntu server guide</h3>
@@ -203,10 +198,10 @@ const Home = () => {
         <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mb-4"/>
         <div className="row">
           <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-4 mb-xl-0 mb-lg-0 mb-md-0">
-            <div class="form-floating">
+            <div className="form-floating">
               <select id="floatingCodeThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e => {
                 setCurrentTheme(JSON.parse(e.target.value));
-              }}>
+              }} defaultValue={JSON.stringify(currentTheme)} value={JSON.stringify(currentTheme)}>
                 <option value={JSON.stringify(a11yDark)}>A11y Dark</option>
                 <option value={JSON.stringify(a11yLight)}>A11y Light</option>
                 <option value={JSON.stringify(anOldHope)}>An Old Hope</option>
@@ -215,7 +210,7 @@ const Home = () => {
                 <option value={JSON.stringify(atomOneDark)}>Atom One Dark</option>
                 <option value={JSON.stringify(atomOneLight)}>Atom One Light</option>
                 <option value={JSON.stringify(codepen)}>Codepen</option>
-                <option selected value={JSON.stringify(dracula)}>Dracula</option>
+                <option value={JSON.stringify(dracula)}>Dracula</option>
                 <option value={JSON.stringify(far)}>Far</option>
                 <option value={JSON.stringify(github)}>Github</option>
                 <option value={JSON.stringify(googlecode)}>Googlecode</option>
@@ -247,29 +242,29 @@ const Home = () => {
                 <option value={JSON.stringify(xt256)}>Xt256</option>
                 <option value={JSON.stringify(zenburn)}>Zenburn</option>
               </select>
-              <label for="floatingCodeThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a code theme:</label>
+              <label htmlFor="floatingCodeThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a code theme:</label>
             </div>
           </div>
           <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <div class="form-floating">
-            <select id="floatingWebThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e=>{setCurrentThemeMode(e.target.value)}}>
+          <div className="form-floating">
+            <select id="floatingWebThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e=>{setCurrentThemeMode(e.target.value)}} defaultValue={currentThemeMode} value={currentThemeMode}>
               <option value="light">Light</option>
               <option value="dark">Dark</option>
             </select>
-            <label for="floatingWebThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a webpage theme:</label>
+            <label htmlFor="floatingWebThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a webpage theme:</label>
             </div>
           </div>
         </div>
 
 
-        {commandData.map((data,i)=>{
-          return (<>
+        {commandData.map((data,index)=>{
+          return (<div key={index}>
             <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mt-4"/>
             <div className="text-center mb-3">
               <kbd className={currentThemeMode=='light'?"":"bg-white text-dark"}>{data.title}</kbd>
             </div>
             {/* <hr/> */}
-            <div className="row shadow p-3 mb-0 pb-0 rounded">
+            <div className="row shadow p-3 mb-0 pb-0 rounded m-3">
               {data.mainData.map((item, i) => {
             return (
               <div
@@ -296,7 +291,7 @@ const Home = () => {
             );
               })}
             </div>
-          </>)
+          </div>)
         })}
 
         <blockquote className="blockquote text-center mt-5 mb-0">
@@ -306,7 +301,7 @@ const Home = () => {
         </blockquote>
 
       </div>
-    </>
+    </div>
   );
 };
 
