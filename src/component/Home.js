@@ -23,17 +23,18 @@ const Home = () => {
       ]
     },
     {
-      "title":"Mysql",
+      "title":"Apache2",
       "mainData":[
-        ["sudo apt install mysql-server", ""],
-        ["sudo apt install apache2", ""],
-        ["sudo systemctl status mysql", ""],
-        ["sudo systemctl status apache2", ""],
-        ["sudo apt install php -y", ""],
-        ["sudo apt install phpmyadmin -y", ""],
-        ["sudo phpenmod mbstring", ""],
-        ["sudo systemctl restart apache2", ""],
-        ["sudo mysql -u root -p", ""],
+        ["sudo apt install apache2",""],
+        ["sudo ufw app list",""],
+        ["sudo ufw allow 'Apache'",""],
+        ["sudo ufw allow 'OpenSSH'",""],
+        ["sudo ufw enable",""],
+        ["sudo ufw status",""],
+        ["systemctl status apache2",""],
+        ["sudo systemctl start apache2",""],
+        ["sudo systemctl stop apache2",""],
+        ["sudo systemctl restart apache2",""],
       ]
     },
     {
@@ -46,6 +47,25 @@ const Home = () => {
         ["sudo ufw enable", ""],
         ["sudo ufw status", ""],
         ["systemctl status nginx", ""],
+        ["sudo systemctl start nginx", ""],
+        ["sudo systemctl stop nginx", ""],
+        ["sudo systemctl restart nginx", ""],
+      ]
+    },
+    {
+      "title":"Mysql",
+      "mainData":[
+        ["sudo apt install mysql-server", ""],
+        ["sudo apt install apache2", ""],
+        ["sudo systemctl status mysql", ""],
+        ["sudo systemctl status apache2", ""],
+        ["sudo apt install php -y", ""],
+        ["sudo apt install phpmyadmin -y", ""],
+        ["sudo phpenmod mbstring", ""],
+        ["sudo systemctl restart apache2", ""],
+        ["sudo mysql -u root -p", ""],
+        ["sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin", ""],
+        ["sudo systemctl restart nginx", ""],
       ]
     },
     {
@@ -127,12 +147,10 @@ const Home = () => {
       <div className="container">
         <div className="row mt-3 d-flex align-item-center">
           <h3 className="text-secondary text-center shadow p-3 rounded">Ubuntu server guide</h3>
-          <p className="text-end"></p>
           <blockquote class="blockquote text-end">
-            <p class="mb-3 text-secondary">Better then thousand of words</p>
+            <p class="mb-3 text-secondary">Simplicity meets power: Ubuntu server setup, mastered with ease.</p>
             <footer class="blockquote-footer">Harshil Kaneria</footer>
           </blockquote>
-
         </div>
         {commandData.map((data,i)=>{
           return (<>
