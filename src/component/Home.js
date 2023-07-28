@@ -196,7 +196,7 @@ const Home = () => {
         </div>
 
         <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mb-4"/>
-        <div className="row">
+        <div className="row justify-content-center">
           <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-4 mb-xl-0 mb-lg-0 mb-md-0">
             <div className="form-floating">
               <select id="floatingCodeThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e => {
