@@ -255,8 +255,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-
         {commandData.map((data,index)=>{
           return (<div key={index}>
             <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mt-4"/>
