@@ -188,7 +188,7 @@ const Home = () => {
     <div>
       <div className={currentThemeMode=='light'?"container-fluid":"container-fluid bg-dark"}>
         <div className="row d-flex align-item-center">
-          <h3 className="text-secondary text-center shadow p-3 rounded">Ubuntu server guide</h3>
+          <h3 className="text-secondary text-center shadow p-3 rounded tracking-in-contract-bck">Ubuntu server guide</h3>
           <blockquote className="blockquote text-end">
             <p className="mb-3 text-secondary">Simplicity meets power: Ubuntu server setup, mastered with ease.</p>
             <footer className="blockquote-footer">Harshil Kaneria</footer>
@@ -196,65 +196,69 @@ const Home = () => {
         </div>
 
         <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mb-4"/>
-        <div className="row justify-content-center">
-          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-4 mb-xl-0 mb-lg-0 mb-md-0">
-            <div className="form-floating">
-              <select id="floatingCodeThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e => {
-                setCurrentTheme(JSON.parse(e.target.value));
-              }} defaultValue={JSON.stringify(currentTheme)} value={JSON.stringify(currentTheme)}>
-                <option value={JSON.stringify(a11yDark)}>A11y Dark</option>
-                <option value={JSON.stringify(a11yLight)}>A11y Light</option>
-                <option value={JSON.stringify(anOldHope)}>An Old Hope</option>
-                <option value={JSON.stringify(androidstudio)}>Androidstudio</option>
-                <option value={JSON.stringify(arta)}>Arta</option>
-                <option value={JSON.stringify(atomOneDark)}>Atom One Dark</option>
-                <option value={JSON.stringify(atomOneLight)}>Atom One Light</option>
-                <option value={JSON.stringify(codepen)}>Codepen</option>
-                <option value={JSON.stringify(dracula)}>Dracula</option>
-                <option value={JSON.stringify(far)}>Far</option>
-                <option value={JSON.stringify(github)}>Github</option>
-                <option value={JSON.stringify(googlecode)}>Googlecode</option>
-                <option value={JSON.stringify(hopscotch)}>Hopscotch</option>
-                <option value={JSON.stringify(hybrid)}>Hybrid</option>
-                <option value={JSON.stringify(irBlack)}>Ir Black</option>
-                <option value={JSON.stringify(monoBlue)}>Mono Blue</option>
-                <option value={JSON.stringify(monokaiSublime)}>Monokai Sublime</option>
-                <option value={JSON.stringify(monokai)}>Monokai</option>
-                <option value={JSON.stringify(nord)}>Nord</option>
-                <option value={JSON.stringify(obsidian)}>Obsidian</option>
-                <option value={JSON.stringify(ocean)}>Ocean</option>
-                <option value={JSON.stringify(paraisoDark)}>Paraiso Dark</option>
-                <option value={JSON.stringify(paraisoLight)}>Paraiso Light</option>
-                <option value={JSON.stringify(pojoaque)}>Pojoaque</option>
-                <option value={JSON.stringify(purebasic)}>Purebasic</option>
-                <option value={JSON.stringify(railscast)}>Railscast</option>
-                <option value={JSON.stringify(rainbow)}>Rainbow</option>
-                <option value={JSON.stringify(shadesOfPurple)}>Shades Of Purple</option>
-                <option value={JSON.stringify(solarizedDark)}>Solarized Dark</option>
-                <option value={JSON.stringify(solarizedLight)}>Solarized Light</option>
-                <option value={JSON.stringify(sunburst)}>Sunburst</option>
-                <option value={JSON.stringify(tomorrowNightBlue)}>Tomorrow Night Blue</option>
-                <option value={JSON.stringify(tomorrowNightBright)}>Tomorrow Night Bright</option>
-                <option value={JSON.stringify(tomorrowNightEighties)}>Tomorrow Night Eighties</option>
-                <option value={JSON.stringify(tomorrowNight)}>Tomorrow Night</option>
-                <option value={JSON.stringify(tomorrow)}>Tomorrow</option>
-                <option value={JSON.stringify(vs2015)}>Vs2015</option>
-                <option value={JSON.stringify(xt256)}>Xt256</option>
-                <option value={JSON.stringify(zenburn)}>Zenburn</option>
-              </select>
-              <label htmlFor="floatingCodeThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a code theme:</label>
+          <div className="row">
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-0"></div>
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 row justify-content-center shadow rounded m-3 p-3">
+              <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4 mb-xl-0 mb-lg-0 mb-md-0">
+                <div className="form-floating">
+                  <select id="floatingCodeThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e => {
+                    setCurrentTheme(JSON.parse(e.target.value));
+                  }} defaultValue={JSON.stringify(currentTheme)} value={JSON.stringify(currentTheme)}>
+                    <option value={JSON.stringify(a11yDark)}>A11y Dark</option>
+                    <option value={JSON.stringify(a11yLight)}>A11y Light</option>
+                    <option value={JSON.stringify(anOldHope)}>An Old Hope</option>
+                    <option value={JSON.stringify(androidstudio)}>Androidstudio</option>
+                    <option value={JSON.stringify(arta)}>Arta</option>
+                    <option value={JSON.stringify(atomOneDark)}>Atom One Dark</option>
+                    <option value={JSON.stringify(atomOneLight)}>Atom One Light</option>
+                    <option value={JSON.stringify(codepen)}>Codepen</option>
+                    <option value={JSON.stringify(dracula)}>Dracula</option>
+                    <option value={JSON.stringify(far)}>Far</option>
+                    <option value={JSON.stringify(github)}>Github</option>
+                    <option value={JSON.stringify(googlecode)}>Googlecode</option>
+                    <option value={JSON.stringify(hopscotch)}>Hopscotch</option>
+                    <option value={JSON.stringify(hybrid)}>Hybrid</option>
+                    <option value={JSON.stringify(irBlack)}>Ir Black</option>
+                    <option value={JSON.stringify(monoBlue)}>Mono Blue</option>
+                    <option value={JSON.stringify(monokaiSublime)}>Monokai Sublime</option>
+                    <option value={JSON.stringify(monokai)}>Monokai</option>
+                    <option value={JSON.stringify(nord)}>Nord</option>
+                    <option value={JSON.stringify(obsidian)}>Obsidian</option>
+                    <option value={JSON.stringify(ocean)}>Ocean</option>
+                    <option value={JSON.stringify(paraisoDark)}>Paraiso Dark</option>
+                    <option value={JSON.stringify(paraisoLight)}>Paraiso Light</option>
+                    <option value={JSON.stringify(pojoaque)}>Pojoaque</option>
+                    <option value={JSON.stringify(purebasic)}>Purebasic</option>
+                    <option value={JSON.stringify(railscast)}>Railscast</option>
+                    <option value={JSON.stringify(rainbow)}>Rainbow</option>
+                    <option value={JSON.stringify(shadesOfPurple)}>Shades Of Purple</option>
+                    <option value={JSON.stringify(solarizedDark)}>Solarized Dark</option>
+                    <option value={JSON.stringify(solarizedLight)}>Solarized Light</option>
+                    <option value={JSON.stringify(sunburst)}>Sunburst</option>
+                    <option value={JSON.stringify(tomorrowNightBlue)}>Tomorrow Night Blue</option>
+                    <option value={JSON.stringify(tomorrowNightBright)}>Tomorrow Night Bright</option>
+                    <option value={JSON.stringify(tomorrowNightEighties)}>Tomorrow Night Eighties</option>
+                    <option value={JSON.stringify(tomorrowNight)}>Tomorrow Night</option>
+                    <option value={JSON.stringify(tomorrow)}>Tomorrow</option>
+                    <option value={JSON.stringify(vs2015)}>Vs2015</option>
+                    <option value={JSON.stringify(xt256)}>Xt256</option>
+                    <option value={JSON.stringify(zenburn)}>Zenburn</option>
+                  </select>
+                  <label htmlFor="floatingCodeThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a code theme:</label>
+                </div>
+              </div>
+              <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div className="form-floating">
+                <select id="floatingWebThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e=>{setCurrentThemeMode(e.target.value)}} defaultValue={currentThemeMode} value={currentThemeMode}>
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                </select>
+                <label htmlFor="floatingWebThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a webpage theme:</label>
+                </div>
+              </div>
             </div>
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-0"></div>
           </div>
-          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <div className="form-floating">
-            <select id="floatingWebThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e=>{setCurrentThemeMode(e.target.value)}} defaultValue={currentThemeMode} value={currentThemeMode}>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-            </select>
-            <label htmlFor="floatingWebThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a webpage theme:</label>
-            </div>
-          </div>
-        </div>
         {commandData.map((data,index)=>{
           return (<div key={index}>
             <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mt-4"/>
