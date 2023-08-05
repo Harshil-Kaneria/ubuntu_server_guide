@@ -41,11 +41,76 @@ import { CopyBlock,
   zenburn } from "react-code-blocks";
 import { toast, Flip } from "react-toastify";
 
+import ListItemText from '@mui/material/ListItemText';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import Avatar from '@mui/material/Avatar';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import SaveIcon from '@mui/icons-material/Save';
+import PrintIcon from '@mui/icons-material/Print';
+import ShareIcon from '@mui/icons-material/Share';
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+
+
+function scrollToDiv(title) {
+  // Find the specific div based on the title
+  const divToScroll = document.querySelector(`[data-title="${title}"]`);
+
+  // Scroll the div into view smoothly
+  if (divToScroll) {
+    divToScroll.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
+  }
+}
+
+
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = '#';
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  console.log("🚀 ~ file: Home.js:76 ~ stringAvatar ~ name:", name)
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.split('')[0][0]}${name.split('')[1][0]}`,
+  };
+}
+
 // Make Function
 const Home = () => {
   const toastId = useRef(null);
   const [currentTheme,setCurrentTheme] = useState(dracula)
   const [currentThemeMode,setCurrentThemeMode] = useState('light')
+
+  const actions = [
+    { icon: <FileCopyIcon />, name: 'Copy' },
+    { icon: <SaveIcon />, name: 'Save' },
+    { icon: <PrintIcon />, name: 'Print' },
+    { icon: <ShareIcon />, name: 'Share' },
+  ];
+  
 
   const [commandData,setCommandData] = useState([
     {
@@ -196,74 +261,70 @@ const Home = () => {
         </div>
 
         <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mb-4"/>
-          <div className="row">
-            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-0"></div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 row justify-content-center shadow rounded m-3 p-3">
-              <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4 mb-xl-0 mb-lg-0 mb-md-0">
-                <div className="form-floating">
-                  <select id="floatingCodeThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e => {
-                    setCurrentTheme(JSON.parse(e.target.value));
-                  }} defaultValue={JSON.stringify(currentTheme)} value={JSON.stringify(currentTheme)}>
-                    <option value={JSON.stringify(a11yDark)}>A11y Dark</option>
-                    <option value={JSON.stringify(a11yLight)}>A11y Light</option>
-                    <option value={JSON.stringify(anOldHope)}>An Old Hope</option>
-                    <option value={JSON.stringify(androidstudio)}>Androidstudio</option>
-                    <option value={JSON.stringify(arta)}>Arta</option>
-                    <option value={JSON.stringify(atomOneDark)}>Atom One Dark</option>
-                    <option value={JSON.stringify(atomOneLight)}>Atom One Light</option>
-                    <option value={JSON.stringify(codepen)}>Codepen</option>
-                    <option value={JSON.stringify(dracula)}>Dracula</option>
-                    <option value={JSON.stringify(far)}>Far</option>
-                    <option value={JSON.stringify(github)}>Github</option>
-                    <option value={JSON.stringify(googlecode)}>Googlecode</option>
-                    <option value={JSON.stringify(hopscotch)}>Hopscotch</option>
-                    <option value={JSON.stringify(hybrid)}>Hybrid</option>
-                    <option value={JSON.stringify(irBlack)}>Ir Black</option>
-                    <option value={JSON.stringify(monoBlue)}>Mono Blue</option>
-                    <option value={JSON.stringify(monokaiSublime)}>Monokai Sublime</option>
-                    <option value={JSON.stringify(monokai)}>Monokai</option>
-                    <option value={JSON.stringify(nord)}>Nord</option>
-                    <option value={JSON.stringify(obsidian)}>Obsidian</option>
-                    <option value={JSON.stringify(ocean)}>Ocean</option>
-                    <option value={JSON.stringify(paraisoDark)}>Paraiso Dark</option>
-                    <option value={JSON.stringify(paraisoLight)}>Paraiso Light</option>
-                    <option value={JSON.stringify(pojoaque)}>Pojoaque</option>
-                    <option value={JSON.stringify(purebasic)}>Purebasic</option>
-                    <option value={JSON.stringify(railscast)}>Railscast</option>
-                    <option value={JSON.stringify(rainbow)}>Rainbow</option>
-                    <option value={JSON.stringify(shadesOfPurple)}>Shades Of Purple</option>
-                    <option value={JSON.stringify(solarizedDark)}>Solarized Dark</option>
-                    <option value={JSON.stringify(solarizedLight)}>Solarized Light</option>
-                    <option value={JSON.stringify(sunburst)}>Sunburst</option>
-                    <option value={JSON.stringify(tomorrowNightBlue)}>Tomorrow Night Blue</option>
-                    <option value={JSON.stringify(tomorrowNightBright)}>Tomorrow Night Bright</option>
-                    <option value={JSON.stringify(tomorrowNightEighties)}>Tomorrow Night Eighties</option>
-                    <option value={JSON.stringify(tomorrowNight)}>Tomorrow Night</option>
-                    <option value={JSON.stringify(tomorrow)}>Tomorrow</option>
-                    <option value={JSON.stringify(vs2015)}>Vs2015</option>
-                    <option value={JSON.stringify(xt256)}>Xt256</option>
-                    <option value={JSON.stringify(zenburn)}>Zenburn</option>
-                  </select>
-                  <label htmlFor="floatingCodeThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a code theme:</label>
-                </div>
-              </div>
-              <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div className="row justify-content-center">
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-4 mb-xl-0 mb-lg-0 mb-md-0">
               <div className="form-floating">
-                <select id="floatingWebThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e=>{setCurrentThemeMode(e.target.value)}} defaultValue={currentThemeMode} value={currentThemeMode}>
-                  <option value="light">Light</option>
-                  <option value="dark">Dark</option>
+                <select id="floatingCodeThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e => {
+                  setCurrentTheme(JSON.parse(e.target.value));
+                }} defaultValue={JSON.stringify(currentTheme)} value={JSON.stringify(currentTheme)}>
+                  <option value={JSON.stringify(a11yDark)}>A11y Dark</option>
+                  <option value={JSON.stringify(a11yLight)}>A11y Light</option>
+                  <option value={JSON.stringify(anOldHope)}>An Old Hope</option>
+                  <option value={JSON.stringify(androidstudio)}>Androidstudio</option>
+                  <option value={JSON.stringify(arta)}>Arta</option>
+                  <option value={JSON.stringify(atomOneDark)}>Atom One Dark</option>
+                  <option value={JSON.stringify(atomOneLight)}>Atom One Light</option>
+                  <option value={JSON.stringify(codepen)}>Codepen</option>
+                  <option value={JSON.stringify(dracula)}>Dracula</option>
+                  <option value={JSON.stringify(far)}>Far</option>
+                  <option value={JSON.stringify(github)}>Github</option>
+                  <option value={JSON.stringify(googlecode)}>Googlecode</option>
+                  <option value={JSON.stringify(hopscotch)}>Hopscotch</option>
+                  <option value={JSON.stringify(hybrid)}>Hybrid</option>
+                  <option value={JSON.stringify(irBlack)}>Ir Black</option>
+                  <option value={JSON.stringify(monoBlue)}>Mono Blue</option>
+                  <option value={JSON.stringify(monokaiSublime)}>Monokai Sublime</option>
+                  <option value={JSON.stringify(monokai)}>Monokai</option>
+                  <option value={JSON.stringify(nord)}>Nord</option>
+                  <option value={JSON.stringify(obsidian)}>Obsidian</option>
+                  <option value={JSON.stringify(ocean)}>Ocean</option>
+                  <option value={JSON.stringify(paraisoDark)}>Paraiso Dark</option>
+                  <option value={JSON.stringify(paraisoLight)}>Paraiso Light</option>
+                  <option value={JSON.stringify(pojoaque)}>Pojoaque</option>
+                  <option value={JSON.stringify(purebasic)}>Purebasic</option>
+                  <option value={JSON.stringify(railscast)}>Railscast</option>
+                  <option value={JSON.stringify(rainbow)}>Rainbow</option>
+                  <option value={JSON.stringify(shadesOfPurple)}>Shades Of Purple</option>
+                  <option value={JSON.stringify(solarizedDark)}>Solarized Dark</option>
+                  <option value={JSON.stringify(solarizedLight)}>Solarized Light</option>
+                  <option value={JSON.stringify(sunburst)}>Sunburst</option>
+                  <option value={JSON.stringify(tomorrowNightBlue)}>Tomorrow Night Blue</option>
+                  <option value={JSON.stringify(tomorrowNightBright)}>Tomorrow Night Bright</option>
+                  <option value={JSON.stringify(tomorrowNightEighties)}>Tomorrow Night Eighties</option>
+                  <option value={JSON.stringify(tomorrowNight)}>Tomorrow Night</option>
+                  <option value={JSON.stringify(tomorrow)}>Tomorrow</option>
+                  <option value={JSON.stringify(vs2015)}>Vs2015</option>
+                  <option value={JSON.stringify(xt256)}>Xt256</option>
+                  <option value={JSON.stringify(zenburn)}>Zenburn</option>
                 </select>
-                <label htmlFor="floatingWebThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a webpage theme:</label>
-                </div>
+                <label htmlFor="floatingCodeThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a code theme:</label>
               </div>
             </div>
-            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-0"></div>
+            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            <div className="form-floating">
+              <select id="floatingWebThemeSelect" className={currentThemeMode=='light'?"form-select":"form-select bg-dark text-white"} aria-label=".form-select-sm example" onChange={e=>{setCurrentThemeMode(e.target.value)}} defaultValue={currentThemeMode} value={currentThemeMode}>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+              <label htmlFor="floatingWebThemeSelect" className={currentThemeMode=='light'?"":"text-white"}>Change a webpage theme:</label>
+              </div>
+            </div>
           </div>
         {commandData.map((data,index)=>{
-          return (<div key={index}>
+          return (<div key={index} data-title={data.title} >
             <hr style={{border:`1px dashed ${currentThemeMode=='light'?'black':'white'}`}} className="mt-4"/>
             <div className="text-center mb-3">
-              <kbd className={currentThemeMode=='light'?"":"bg-white text-dark"}>{data.title}</kbd>
+              <kbd className={currentThemeMode=='light'?"":"bg-light text-dark"}>{data.title}</kbd>
             </div>
             {/* <hr/> */}
             <div className="row shadow p-3 mb-0 pb-0 rounded m-3">
@@ -303,6 +364,25 @@ const Home = () => {
         </blockquote>
 
       </div>
+
+
+      <SpeedDial
+        ariaLabel="SpeedDial basic example"
+        sx={{ position: 'fixed', bottom: 25, right: 25}}
+        icon={<ElectricBoltIcon /> }
+      >
+        {commandData.map((data,index) => {
+          return (<SpeedDialAction
+              	key={index}
+              	tooltipTitle={data.title}
+              	onClick={() => scrollToDiv(data.title)}
+              	icon={<Avatar {...stringAvatar(data.title)} />}
+                tooltipOpen
+          	>
+          	</SpeedDialAction>)
+        	})}
+      </SpeedDial>
+
     </div>
   );
 };
